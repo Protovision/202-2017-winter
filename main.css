@@ -1,0 +1,11 @@
+table {
+	border-collapse: collapse;
+}
+td {
+	border: solid 1px black;
+	padding: .5em;
+}
+* {
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
+}
+
