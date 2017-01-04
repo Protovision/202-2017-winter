@@ -11,6 +11,12 @@ code {
 	white-space: pre;
 	margin: 1em 0;
 }
+tt {
+	display: inline;
+	font-family: monospace;
+	white-space: pre;
+	margin: 1em 0;
+}
 * {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
 }

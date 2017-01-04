@@ -1,0 +1,107 @@
+<html>
+
+<head>
+	<title>Vectors</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<h1>Vectors</h1>
+
+<p>
+A vector is a meta data type. It is not an actual data type until it is qualified with the data type that makes up it's elements. A vector can store any number of values as long as they are all of the same data type. Each value or element can be accessed by it's index which is just an integer whose range starts from 0 and ends at the number of elements in the vector minus one. 
+</p>
+
+<p>
+An "integer vector" or "vector of integers" is what people say to refer to a type of vector denoted as <tt>vector&lt;int&gt;</tt> in C++. The qualifier data type for this meta data type lies in the angle brackets. The elements in a vector can also themselves be vectors: <tt>vector&lt; vector&lt;char&gt; &gt;</tt> is a perfectly valid data type.
+</p>
+
+<p>
+In C++ terminology, vector is the name of a "class template". Recall that classes specify the design of data types in C++. Templates, which you will learn later on, are for expressing C++ code that operates on data types that are not yet known until used with future C++ code. So a vector is, in other words, a meta class. 
+</p>
+
+<p>
+Any qualified class of the vector class template will have the following operators available to it:
+</p>
+
+<ul>
+	<li>Assignment operator (<tt>=</tt>) for copying vectors between variables</li>
+	<li>Subscript operator (<tt>[]</tt>) for accessing individual elements</li>
+	<li>Comparison operators (<tt>==, !=, &lt;, &lt;=, &gt;, &gt;=</tt>) for lexicographically comparing vectors by their elements</li>
+</ul>
+
+<p>
+vectors will also contain member functions which, like the operators, allow for observing or manipulating the vector in some way.
+</p>
+
+<p>
+I can go on and on about all this abstract nonsense but the best way for you to understand this is for you to see examples of code and to experiment with these examples yourself.
+</p>
+
+<p>
+Here is a classic example of a program that uses a vector of double to calculate a mean value:
+</p>
+
+<code>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main()
+{
+	double n, sum = 0.0;
+	vector&lt;double&gt; v;
+	while (cin &gt;&gt; n) v.push_back(n);
+	for (double e : v) sum += e;
+	cout &lt;&lt; (sum / v.size()) &lt;&lt; endl;
+	return 0;
+}
+</code>
+
+<p>
+When compiled, the program will read all the whitespace-seperated numbers that you enter from the keyboard until you press CTRL-D, then the mean value will be calculated and displayed.
+</p>
+
+<p>
+It's not a very useful example of vectors, since a simpler program with the same effect could be expressed without using vectors:
+</p>
+
+<code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+	double n, sum = 0.0;
+	while (cin &gt;&gt; n) sum += n;
+	cout &lt;&lt; (sum / n) &lt;&lt; endl;
+	return 0;
+}
+</code>
+
+<p>
+But the original example shows how you can insert new elements into vectors using the push_back member function and iterate through each element using the range-based for loop.
+</p>
+
+Calculating the mean value from a vector of double can also be done using a regular for statement:
+
+<code>
+for (int i = 0; i &lt; v.size(); ++i) {
+	sum += v[i];
+}
+double mean = sum / v.size();
+</code>
+
+The same thing can also be done using a while statment:
+
+<code>
+int i = 0;
+while (i &lt; v.size()) sum += v[i++];
+double mean = sum / v.size();
+</code>
+
+</body>
+
+</html>

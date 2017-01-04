@@ -1,0 +1,65 @@
+<html>
+
+<head>
+	<title>Lab 1</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<h1>Lab 1</h1>
+
+<p>
+Store all of your files for this lab in a folder named "lab1".
+</p>
+
+<p>
+In this lab you will create filter programs. A filter reads all of it's input, processes that input, then produces output. You will recreate 2 filter programs that are already available in Bash: nl, for numbering lines and wc, a word counting program. 
+</p>
+
+Suppose you have a file named data.txt and it contains the following data:
+
+<code>
+The quick brown
+fox
+jumped over
+the lazy dog.
+</code>
+
+The nl command numbers the lines coming from it's input. Using the following command in bash:
+
+<code>
+nl &lt; data.txt
+</code>
+
+Produces the following output:
+
+<code>
+     1  The quick brown
+     2  fox
+     3  jumped over
+     4  the lazy dog.
+</code>
+
+The wc command gives you the number of lines, words, and characters of the data that it reads. This command:
+
+<code>
+wc &lt; data.txt
+</code>
+
+Will output:
+
+<code>
+4 9 46
+</code>
+
+Which means that data.txt contained 4 lines, 9 words, and 46 characters. For this lab you won't have to have your wc implementation count lines or characters, just words. 
+
+<h3>Exercise 1</h3>
+
+Create a program that works like the nl command. Name your source file nl.cpp and name your program file nl. 
+
+<h3>Exercise 2</h3>
+
+Create a program that counts the number of words it reads from standard input. Name your source file wc.cpp and name your program file wc. 
+
+</html>
