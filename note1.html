@@ -34,12 +34,12 @@ Commands and terminal-bound programs that can be helpful for you include:
 
 <ul>
 	<li>Filesystem commands: cd, ls, cp, mv, rm, mkdir</li>
-	<li>The GNU C++ compiler command: g++</li>
+	<li>The C++ compiler command</li>
 	<li>A terminal-based text editor: vim</li>
 </ul>
 
 <p>
-At the very least, you should know how to use g++ (this command may also have the alias c++ on some operating systems). 
+At the very least, you should know how to use the command-line C++ compiler. GNU C++ is what is available on most Linux distributions as well as Cloud9. On Cloud9, we will be using g++-5 as the compiler command.
 </p>
 
 <h3>Using the GNU C++ compiler (g++)</h3>
@@ -50,10 +50,12 @@ Let's recall the process of compiling and running a C++ program. First you start
 
 <code>
 #include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
 
 int main()
 {
-	std::cout &lt;&lt; "It works!" &lt;&lt; std::endl;
+	cout &lt;&lt; "It works!"s &lt;&lt; endl;
 	return 0;
 }
 </code>
@@ -64,7 +66,7 @@ Let's assume that this source file is saved in "/home/ubuntu/workspace/code/test
 
 <code>
 cd code
-g++ -std=c++11 -o test test.cpp
+g++-5 -std=c++14 -o test test.cpp
 ./test
 </code>
 
@@ -72,20 +74,6 @@ g++ -std=c++11 -o test test.cpp
 The first command will bring us into the code directory, where test.cpp resides. The second command compiles test.cpp into a program named test, and the third command executes test.
 </p>
 
-<p>
-The way I used the g++ command here may seem overly complicated, a lazier set of commands would be:
-</p>
-
-<code>
-cd code
-g++ test.cpp
-./a.out
-</code>
-
-<p>
-The difference between my way and the lazy way is that my way gives two specific requests to g++: that the compilation be done using the C++11 standard of C++ and that the program file generated be named "test".
-</p>
-
-Without these options, g++ uses C++98 as the default standard and "a.out" as the default output file name. In this course I will be teaching conforming to the relatively newer C++11 standard so make sure you use -std=c++11 when compiling. 
+The command "g++-5" is specific to the Cloud9 environment, in other operating systems it may be aliased as "g++" or "c++". In whatever case, it is the command for invoking the operating system's C++ compiler. The option "-std=c++14" means that we will use the C++14 standard of the C++ language. Our code will not compile if the compiler is using the wrong standard for our code (the default standard it uses is C++98).
 
 </html>
