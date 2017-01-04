@@ -1,0 +1,91 @@
+<html>
+
+<head>
+	<title>Command-Line Interface</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<h1>Command-Line Interface</h1>
+
+<p>
+Knowing how to use a command-line interface (CLI) can greatly enhance your productivity on a computer. Despite having limited graphics output and keyboard-only input, a single command can automate a task that may take days using a graphical user interface (GUI).
+</p>
+
+<p>
+In Computer Science I, you already used a CLI when you entered commands to compile and run your programs. The most popular CLI program, and the one that you were most likely using, is bash. Your means of interacting with bash of course was through another program known as a terminal.
+</p>
+
+<p>
+Bash commands fall into two categories: internal commands and external commands. There are only a few internal commands such as source and cd. Commands like these are also known as built-in commands; bash is pre-programmed to recognize these commands. If bash does not immediately recognize a given command, it will try to search for the appropriate program to run as specified in the first word in the command.
+</p>
+
+<p>
+Commands such as ls, cp, and rm are external commands because bash delegates the task of running these commands to external programs. ls, for example, is actually a program that exists at /usr/bin/ls in the file system.
+</p>
+
+<p>
+Whenever you run your compiled program in the terminal, you are running your program as an external command in bash.
+</p>
+
+<p>
+Commands and terminal-bound programs that can be helpful for you include:
+</p>
+
+<ul>
+	<li>Filesystem commands: cd, ls, cp, mv, rm, mkdir</li>
+	<li>The GNU C++ compiler command: g++</li>
+	<li>A terminal-based text editor: vim</li>
+</ul>
+
+<p>
+At the very least, you should know how to use g++ (this command may also have the alias c++ on some operating systems). 
+</p>
+
+<h3>Using the GNU C++ compiler (g++)</h3>
+
+<p>
+Let's recall the process of compiling and running a C++ program. First you start off with a source file like this one:
+</p>
+
+<code>
+#include &lt;iostream&gt;
+
+int main()
+{
+	std::cout &lt;&lt; "It works!" &lt;&lt; std::endl;
+	return 0;
+}
+</code>
+
+<p>
+Let's assume that this source file is saved in "/home/ubuntu/workspace/code/test.cpp". Now when we open the terminal, bash will run and automatically set our current directory at "/home/ubuntu/workspace". We would then use the following commands:
+</p>
+
+<code>
+cd code
+g++ -std=c++11 -o test test.cpp
+./test
+</code>
+
+<p>
+The first command will bring us into the code directory, where test.cpp resides. The second command compiles test.cpp into a program named test, and the third command executes test.
+</p>
+
+<p>
+The way I used the g++ command here may seem overly complicated, a lazier set of commands would be:
+</p>
+
+<code>
+cd code
+g++ test.cpp
+./a.out
+</code>
+
+<p>
+The difference between my way and the lazy way is that my way gives two specific requests to g++: that the compilation be done using the C++11 standard of C++ and that the program file generated be named "test".
+</p>
+
+Without these options, g++ uses C++98 as the default standard and "a.out" as the default output file name. In this course I will be teaching conforming to the relatively newer C++11 standard so make sure you use -std=c++11 when compiling. 
+
+</html>
