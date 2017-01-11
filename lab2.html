@@ -1,0 +1,72 @@
+<html>
+
+<head>
+	<title>Lab 2</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<h1>Lab 2</h1>
+
+<p>
+Store all of your files for this lab in a folder named "lab2".
+</p>
+
+<h3>Exercise 1</h3>
+
+<p>
+Create a program that makes you guess the letters of a word or phrase. It will be a game is similar to hangman. Name your program file hangman and your source file hangman.cpp
+</p>
+
+<p>
+The program should start by displaying underscores for each letter in the word or phrase. Then the user guesses 1 letter. If the letter is in your word/phrase then the program replaces all underscores with that letter, the partially solved word/phrase is refreshed and displayed again, and the user can guess another letter.
+</p>
+
+<p>
+If the user guesses a letter that doesn't exist in your word/phrase 6 times, then the program ends with the message "You Lose!"
+</p>
+
+<p>
+When the user guesses all the correct letters, then the program ends with the message "You win!"
+</p>
+
+<p>
+Hint: You can implement this program using character vectors.
+</p>
+
+<h3>Exercise 2</h3>
+
+<p>
+Create a program that finds the most used word from standard input; however, the most used word CANNOT include any of the following common words found in this vector: 
+</p>
+
+<code>
+vector&lt;string&gt; common_words = {
+	"the"s, "be"s, "to"s, "of"s, "and"s, "a"s,
+	"in"s, "that"s, "have"s, "I"s, "it"s, "for"s,
+	"not"s, "on"s, "with"s, "he"s, "as"s, "you"s,
+	"do"s, "at"s, "this"s, "but"s, "his"s, "by"s,
+	"from"s, "they"s, "we"s, "say"s, "her"s, "she"s,
+	"or"s, "an"s, "will"s, "my"s, "one"s, "all"s,
+	"would"s, "there"s, "their"s, "what"s, "so"s,
+	"up"s, "out"s, "if"s, "about"s, "who"s, "get"s,
+	"which"s, "go"s, "me"s, "when"s, "make"s, "can"s,
+	"like"s, "time"s, "no"s, "just"s, "him"s, "know"s,
+	"take"s, "people"s, "into"s, "year"s, "your"s,
+	"good"s, "some"s, "could"s, "them"s, "see"s,
+	"other"s, "than"s, "then"s, "now"s, "look"s,
+	"only"s, "come"s, "its"s, "over"s, "think"s,
+	"also"s, "back"s, "after"s, "use"s, "two"s,
+	"how"s, "our"s, "work"s, "first"s, "well"s,
+	"way"s, "even"s, "new"s, "want"s, "because"s,
+	"any"s, "these"s, "give"s, "day"s, "most"s,
+	"us"s
+};
+</code>
+
+Name your program topword and your source file topword.cpp. Hint: You should use a <tt>map&lt;string, int&gt;</tt> for this program.
+</body>
+
+</html>
