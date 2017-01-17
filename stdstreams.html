@@ -1,0 +1,81 @@
+<html>
+
+<head>
+	<title>Standard streams</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<p>
+Note: I will talk about Bash and C++ here, any Bash commands that I show are part of a language that is different from C++. C++ is a language for creating programs. Bash is a language for executing programs. Remember that your text editor and your terminal are two different environments, one is primarily for C++ code and the the other is primarily for Bash code. Not all programs understand the same languages, know which program you are using before you start entering code.
+</p>
+
+<h3>Standard streams in Bash</h3>
+
+<p>
+Every active program contains it's own set of standard streams. Two of these streams are known as standard input and standard output. From the program's perspective, standard input is the main source of information that needs processing and standard output is the main destination where processed information can be sent.
+</p>
+
+<p>
+When a program executes as an effect and result of a Bash command, in most cases, it's standard input stream is associated with the keyboard and it's standard output stream is associated with the terminal window. Now certain operators within the Bash language can change this normative behaviour, their effects are part of a concept known as redirection.
+</p>
+
+<p>
+Consider the basic command <tt>ls</tt>. This command instructs Bash to execute the program named "ls" (whose file path is usually located in /usr/bin). When the ls program executes from this command, it's standard input becomes associated with the keyboard and it's standard output becomes associated with the terminal window. 
+</p>
+
+<p>
+When we use the command <tt>ls &gt; files.txt</tt>, the standard stream output stream becomes associated with the file named "files.txt". This means that any output from the ls program gets "redirected", that is, written to the "files.txt" file. 
+</p>
+
+<p>
+Consider another command: <tt>sort &lt; phonebook.txt</tt>. The sort program outputs all the lines from it's input in alphabetical order. In the command just shown, we are using the data from the file phonebook.txt as the source for the program's standard input. Without the &lt; operator, we would be required to manually type lines into the sort program's input, ending our input with a CTRL+D interrupt. 
+</p>
+
+<h3>Standard streams in C++</h3>
+
+<p>
+When creating programs in C++, the <tt>cin</tt> variable represents your program's standard input stream and the <tt>cout</tt> variable represents your program's standard output stream. 
+</p>
+
+<p>
+A statement like: <tt>cin &gt;&gt; x;</tt> has the general meaning of "read data from standard input and store that data into the variable x"; this data can be an integer, real number, character, or string depending on the type of variable being used with this operator. If a string is being read, then it is a single word that gets read.
+</p>
+
+<p>
+If you wanted to read a line from standard input and store it into a string, then the statement <tt>getline(cin, x);</tt> will suffice, given that x is a variable of type string.
+</p>
+
+<p>
+If your program expects all input to be in the format of real numbers, and you wanted to read all of them, and perhaps, sum them all together, then such a program can be expressed as follows:
+</p>
+
+<code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+	double n, sum;
+	sum = 0.0;
+	while (cin &gt;&gt; n) {
+		sum += n;
+	}
+	cout &lt;&lt; sum &lt;&lt; endl;
+	return 0;
+}
+</code>
+
+<p>
+The key thing here is the code fragment <tt>while (cin &gt;&gt; n)</tt>, this means that a certain action will be performed while a real number has been successfully extracted from standard input. 
+</p>
+
+<p>
+The same applies to the getline function: you may use getline within a while statement's condition to process all the lines coming from standard input.
+</p>
+
+</body>
+
+</html>

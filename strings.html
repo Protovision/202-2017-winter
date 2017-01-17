@@ -1,0 +1,125 @@
+<html>
+
+<head>
+	<title>Strings</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<h1>Strings</h1>
+
+<p>
+C++ tutorials that predate C++14 have the student use character arrays and strings at the same time. While these data types fulfill the same purpose, they differ in the way you use them. 
+</p>
+
+<p>
+The data type of the value <tt>"hello world"</tt> is actually <tt>const char*</tt> which is related to a concept you may not have learned yet. For now we shall call that data type character array. When I introduce a hello world program, I use <tt>"hello world"s</tt> as the value to be displayed on standard output (notice the s suffix). The data type of <tt>"hello world"s</tt> is <tt>string</tt> and it supports many more operations than character arrays. 
+</p>
+
+<p>
+People may use the terms string and character array interchangeably, and in general, they are synonomous; but within the context of C++ data types, a string is not the same as a character array. Others use the terms C string and C++ string to distinguish between a character array and a string.
+</p>
+
+<p>
+<tt>string</tt> is actually the name of a class from the standard C++ library. You may create variables or values using this class after you include the <tt>&lt;string&gt;</tt> header file. 
+</p>
+
+<p>
+Here are some operators supported by <tt>string</tt>:
+</p>
+
+<table>
+	<tr>
+		<td>Operator</td>
+		<td>Description</td>
+	</tr>
+	<tr>
+		<td><tt>+</tt></td>
+		<td>Create new string by concatenating two existing strings</td>
+	</tr>
+	<tr>
+		<td><tt>+=</tt></td>
+		<td>Concatenate right-hand string to the left-hand string variable</td>
+	</tr>
+	<tr>
+		<td><tt>==</tt></td>
+		<td>Compare for equality</td>
+	</tr>
+	<tr>
+		<td><tt>!=</tt></td>
+		<td>Compare for inequality</td>
+	</tr>
+	<tr>
+		<td><tt>&lt;</tt></td>
+		<td>Compare for alphabetically lesser</td>
+	</tr>
+	<tr>
+		<td><tt>&gt;</tt></td>
+		<td>Compare for alphabetically greater</td>
+	</tr>
+	<tr>
+		<td><tt>&lt;=</tt></td>
+		<td>Compare for equality or alphabetically lesser</td>
+	</tr>
+	<tr>
+		<td><tt>&gt;=</tt></td>
+		<td>Compare for equality or alphabetically greater</td>
+	</tr>
+</table>
+
+<p>
+None of these operators are supported by obsolete character arrays which is why I encourage you to take advantage of string literals provided by C++14. 
+</p>
+
+<p>
+The only operator that a character array and a string share is <tt>[]</tt> (the subscript operator). This operator allows you to access or modify one of the characters stored in the string or character array. 
+</p>
+
+<p>
+For the string variable <tt>string x = "hello"s</tt>: <tt>s[0]</tt> has the value <tt>'h'</tt>, <tt>s[1]</tt> has the value <tt>'e'</tt>, <tt>s[2]</tt> has the value <tt>'l'</tt>, <tt>s[3]</tt> has the value <tt>'l'</tt>, and <tt>s[4]</tt> has the value <tt>'o'</tt>.
+</p>
+
+<p>
+Each character stored in a string is known as an element of that string, and the subscript operator gives you access to an element via it's index. The index of the first character of a string will always be <tt>0</tt>, and the index of the last character is one less than the number of characters in the whole string.
+</p>
+
+<p>
+In addition to operators, any <tt>string</tt> instance (whether it be a literal value or a variable) contains these member functions:
+</p>
+
+<table>
+	<tr>
+		<td>Member function</td>
+		<td>Description</td>
+	</tr>
+	<tr>
+		<td><tt>int size();</tt></td>
+		<td>Returns the number of characters stored in the string</td>
+	</tr>
+	<tr>
+		<td><tt>void insert(int index, string s);</tt></td>
+		<td>Inserts <tt>string s</tt> into the current string starting at <tt>index</tt>, (the other characters are shifted over to the right)</td>
+	</tr>
+	<tr>
+		<td><tt>void erase(int index, int count);</tt></td>
+		<td>Removes <tt>count</tt> characters from the string starting at <tt>index</tt></td>
+	</tr>
+	<tr>
+		<td><tt>string substr(int pos, int count);</tt></td>
+		<td>Returns a new string equal to the portion of the current string that begins at index <tt>pos</tt> and spans <tt>count</tt> number of characters</td>
+	</tr>
+	<tr>
+		<td><tt>int find(string s);</tt></td>
+		<td>Finds the index of first occurrence of <tt>string s</tt> within the current string. Returns <tt>-1</tt> if not found</td>
+	</tr>
+	<tr>
+		<td><tt>int rfind(string s);</tt></td>
+		<td>Finds the index of the last occurrence of <tt>string s</tt> within the current string. Returns <tt>-1</tt> if not found</td>
+	</tr>
+</table>
+
+</body>
+
+</html>
