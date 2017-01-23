@@ -1,0 +1,116 @@
+<html>
+
+<head>
+	<title>Iterators II</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<h1>Iterators II</h1>
+
+<p>
+Map iterators are not random-access like vector iterators are, therefore an expression like <tt>m.begin() + 5</tt> would be invalid if m is a map. 
+</p>
+
+<p>
+With vectors, you can get an iterator to a specific element with an expression like <tt>v.begin() + IDX</tt> where IDX is the index of an element. Getting an iterator to a specific element in a map can be done with an expression like <tt>m.find(KEY)</tt> where KEY is the value of a key associated with a key/value pair element.
+</p>
+
+<p>
+With maps, the subscript operator and the find member function are not the same. The subscript operator gives you the value associated with a specified key. The find member function gives you an iterator to the key/value pair from the specified key. 
+</p>
+
+<p>
+Let's see some equivalent expressions for setting the value of a key/value pair in a map.
+</p>
+
+<code>
+map&lt;string, double&gt; prices;
+
+/* Create and set value using subscript operator */
+prices["bread"s] = 2.50;
+
+/* Find and set value using iterators */
+map&lt;string, double&gt;::iterator it = prices.find("bread"s);
+it-&gt;second = 2.40;
+
+/* Same as above but all on one line */
+prices.find("bread"s)-&gt;second = 2.40;
+</code>
+
+<p>
+Another thing to note is that a map's subscript operator will create the element if it does not already exist. The find member function will fail if the element, specified by it's key, does not exist. 
+</p>
+
+<p>
+Using a range-based for loop works on maps, but if you wanted to use iterators, the code would look like this:
+</p>
+
+<code>
+for (map&lt;string, double&gt;::iterator it = prices.begin(); it != prices.end(); ++it)
+	cout &lt;&lt; it-&gt;first &lt;&lt; " : "s &lt;&lt; it-&gt;second &lt;&lt; endl;
+</code>
+
+<p>
+The equivalent code using a ranged-based for loop would be:
+</p>
+
+<code>
+for (pair&lt;string, double&gt; e : prices)
+	cout &lt;&lt; e.first &lt;&lt; " : "s &lt;&lt; e.second &lt;&lt; endl;
+</code>
+
+<p>
+A new operator you should notice here is <tt>-&gt;</tt>, this is known as the "member access through pointer" operator. 
+</p>
+
+<p>
+Since an iterator is not an element value but merely "pointer" to an element value, the member access operator (denoted by a dot) will not work. The normal member access operator is used for accessing member variables of a variable: in the ranged-based for loop, e.first and e.second uses the member access operator to access the key and values stored in the pair. The <tt>-&gt;</tt> operator is similar but is used for values that "point" to a location that contains the member variables. 
+</p>
+
+<p>
+Another way of explaining the difference is: the expression <tt>a.b</tt> means get value of variable b from inside variable a, and the expression <tt>a-&gt;b</tt> means get the value of variable b from inside the variable that is pointed to by a.
+</p>
+
+<p>
+It will become apprant why iterators are useful later on, right now the only use of iterators for maps would be to use the erase member function.
+</p>
+
+<p>
+The following statement will remove the key/value pair containing the key "bread" from the prices map:
+</p>
+
+<code>
+prices.erase(prices.find("bread"s));
+</code>
+
+<p>
+This will work if we know that the key "bread" exists, but if we are not sure if such a key exists we can use the following:
+</p>
+
+<code>
+map&lt;string, double&gt;::iterator it = prices.find("bread"s);
+if (it != prices.end()) prices.erase(it);
+</code>
+
+<p>
+You can actually erase a map element without using iterators:
+</p>
+
+<code>
+prices.erase("bread"s);
+</code>
+
+<p>
+This erases the element containing key "bread" if it exists. 
+</p>
+
+<p>
+A side note about maps: maps also contain size and clear member function just like vectors, you can use them to get the number of elements in the map and remove all elements from the map respectively.
+</p>
+
+</body>
+
+</html>
