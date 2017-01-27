@@ -1,0 +1,116 @@
+<html>
+
+<head>
+	<title>File streams</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<h1>File streams</h1>
+
+<p>
+The standard streams are not the only communication channels a program can use, a program can send or receive data directly on a file. 
+</p>
+
+<p>
+Even though you can use the command shell to redirect a program's standard streams to or from a file rather than the terminal, a program can otherwise choose to communicate to a file if it needs to. 
+</p>
+
+<p>
+This is an example of a program that creates a file and writes "hello world!" to it:
+</p>
+
+<code>
+#include &lt;fstream&gt;
+using namespace std;
+
+int main()
+{
+	ofstream f("example.txt"s);
+	f &lt;&lt; "hello world!"s &lt;&lt; endl;
+	return 0;
+}
+</code>
+
+<p>
+The data type <tt>ofstream</tt> stands for output file stream, it represents a one-way portal for information to be written to a file. Once an output file stream has been created and associated with a file, you can use it the same way you would use the cout variable.
+</p>
+
+<p>
+Notice how our ofstream is initialized. Unlike other data types (such as int, double, or even vector&lt;int&gt;), ofstream cannot be initialized with an assignment operator. You must initialize it with a list of values enclosed in parenthesis, it is similar to performing a function call.
+</p>
+
+<p>
+If you want to initialize an ofstream variable, you must use the name of the file you want the ofstream to write data to. This file will be created if it doesn't exist, otherwise it is truncated. 
+</p>
+
+<p>
+We also have <tt>ifstream</tt>; when initialized with a file path, you can use it like you would with the cin object to read data from a file. This program displays all lines from example.txt into the terminal:
+</p>
+
+<code>
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+using namespace std;
+
+int main()
+{
+	ifstream f("example.txt"s);
+	string line;
+	while (getline(f, line))
+		cout &lt;&lt; line &lt;&lt; endl;
+	return 0;
+}
+</code>
+
+<p>
+You may associate a different file with a file stream any time. This program uses one ofstream to write to multiple files one at a time:
+</p>
+
+<code>
+#include &lt;fstream&gt;
+using namespace std;
+
+int main()
+{
+	ofstream f;
+	f.open("data1.txt"s);
+	f &lt;&lt; "abc"s &lt;&lt; endl;
+	f &lt;&lt; 123 &lt;&lt; endl;
+	f.close();
+	f.open("data2.txt"s);
+	f &lt;&lt; "def"s &lt;&lt; endl;
+	f &lt;&lt; 456 &lt;&lt; endl;
+	f.close();
+}
+</code>
+
+<p>
+As you can see, f was first declared without an initial file association. The open member function associates a file with the file stream if none was already associated with it. The close member function disassociates the opened file with the current file stream. 
+</p>
+
+<p>
+You may check for any errors on the file stream by using it in a conditional statement. Consider the following code that may exist inside a main function:
+</p>
+
+<code>
+ifstream f;
+f.open("data.txt"s);
+if (not f) {
+	cerr &lt;&lt; "Failed to open file!" &lt;&lt; endl;
+	return 1;
+}
+</code>
+
+<p>
+The variable f is treated as a boolean value within the If statement, it will be true if the stream is fully operational or false if: the stream failed to open, failed to read data, or failed to write data. 
+</p>
+
+<p>
+Notice the use of the new variable <tt>cerr</tt>, this is another standard stream like <tt>cout</tt>. <tt>cerr</tt> should be used when you want to output an error message from your program. 
+</p>
+</body>
+
+</html>
