@@ -1,0 +1,96 @@
+<html>
+
+<head>
+	<title>Lab 4</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<h1>Lab 4</h1>
+
+<p>
+Store all of your files for this lab in a folder named "lab4".
+</p>
+
+<h2>Information for exercises 2 and 3</h2>
+
+<p>
+A cstring stores the same content as a string, but inside a character array. The number of elements in a character array may exceed the length of the string content that it holds. 
+</p>
+
+<p>
+For example, a variable like <tt>char str[256]</tt> may exist but it only contains the string content "hello"; the rest of the character elements being currently unused. 
+</p>
+
+<p>
+To distinguish the end of string content or string data within a character array, the last character of the string data should always be <tt>'\0'</tt>. 
+</p>
+
+<p>
+Thus: <tt>str[0]</tt> will be <tt>'h'</tt>, <tt>str[1]</tt> will be <tt>'e'</tt>, <tt>str[2]</tt> will be <tt>'l'</tt>, <tt>str[3]</tt> will be <tt>'l'</tt>, <tt>str[4]</tt> will be <tt>'o'</tt>, and <tt>str[5]</tt> will be <tt>'\0'</tt>.
+</p>
+
+<h3>Exercise 1</h3>
+
+<p>
+Create a program that outputs only the last 10 lines of it's input. Your solution must use an array. Name your program: tail and your source file: tail.cpp. 
+</p>
+
+<h3>Exercise 2</h3>
+
+Create a program first by including the following code for your main function:
+
+<code>
+int main()
+{
+	char cs[128] = "The quick brown fox";
+	cout &lt;&lt; cstr_len(cs) &lt;&lt; endl;
+	return 0;
+}
+</code>
+
+<p>
+Implement the function <tt>int cstr_len(const char cstr[]);</tt> so that the main function will work. cstr_len should return the length of the string content within it's character array parameter.
+</p>
+
+<p>
+The program should output: 19
+</p>
+
+<p>
+Name your program: testlen and your source file: testlen.cpp
+</p>
+
+<h3>Exercise 3</h3>
+
+<p>
+Create a program first by including the following code for your main function:
+</p>
+
+<code>
+int main()
+{
+	char cs[128] = "The quick brown ";
+	cstr_append(cs, "fox");
+	cout &lt;&lt; cs &lt;&lt; endl;
+	return 0;
+}
+</code>
+
+<p>
+Implement the function <tt>void cstr_append(char a[], const char b[]);</tt> so that the main function will work. cstr_append should append the string content from parameter b into the string content in parameter a. 
+</p>
+
+<p>
+The program should output: The quick brown fox
+</p>
+
+<p>
+Name your program: testapp and your source file: testapp.cpp
+</p>
+
+</body>
+
+</html>
