@@ -1,0 +1,87 @@
+<html>
+
+<head>
+	<title>Lab 5</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<h1>Lab 5</h1>
+
+<p>
+Store all of your files for this lab in a folder named "lab5".
+</p>
+
+<h3>Exercise 1</h3>
+
+<p>
+Create a slot machine game. Here is one way the program could work:
+</p>
+
+<p>
+There are three reels each one numbered 0 to 9. The user starts off with 100 coins. Before spinning, the user chooses to pay 1, 2 or 3 coins. When all three reels land on the same number the user wins coins equal to 300 multiplied by the number of coins they paid. 
+</p>
+
+<p>
+Your program may optionally display an animation for the spin. If you'd like, you can make the reels have more symbols or make the pay out condition more complex. 
+</p>
+
+<p>
+Name your source file slots.cpp and your program slots.
+</p>
+
+<h3>Exercise 2</h3>
+
+<p>
+This is the source code for a program that makes you guess a random 3-letter, lowercase password:
+</p>
+
+<code>
+#include &lt;iostream&gt;
+#include &lt;random&gt;
+using namespace std;
+
+int main()
+{
+    default_random_engine prng(random_device{}());
+    uniform_int_distribution&lt;char&gt; dist('a','z');
+    string password;
+    string guess;
+
+    for (int i = 0; i &lt; 3; ++i) password += dist(prng);
+    while (true) {
+        cout &lt;&lt; "Guess 3-letter password: ";
+        cin &gt;&gt; guess;
+        cout &lt;&lt; "You guessed: " &lt;&lt; guess &lt;&lt; endl;
+        if (guess == password) {
+            cout &lt;&lt; "Access granted." &lt;&lt; endl;
+            break;
+        } else {
+            cout &lt; "Access denied." &lt; endl;
+        }
+    }
+    return 0;
+}
+</code>
+
+<p>
+Save this source code into password.cpp and compile it into a program named password.
+</p>
+
+<p>
+Now create a program named guess so that when you run this command:
+</p>
+
+<code>
+./guess | ./password
+</code>
+
+<p>
+the password will be cracked. The above command will execute the guess program and send all of it's output to the input of the execution of the password program. The guess program should output all possible password combinations so that the correct password will eventually be guessed.
+</p>
+
+</body>
+
+</html>
