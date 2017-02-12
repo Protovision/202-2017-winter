@@ -1,0 +1,130 @@
+<html>
+
+<head>
+	<title>Random number generation</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<h1>Random number generation</h1>
+
+<p>
+Continuing with our emphasis on learning the standard library components of C++, we shall now look at functions and classes that provide us a means to generate random numbers.
+</p>
+
+<p>
+Before C++11 (and it's successor C++14) became widely adopted, the standard way to do this was to use the <tt>srand</tt> and <tt>rand</tt> functions from &lt;cstdlib&gt;. You may be familiar with this older method, but I will not discuss it any further here because it uses standard library components from an older and cruder programming language. You should become accustomed to using the newer method especially designed for the C++ of the 21st century. 
+</p>
+
+<p>
+The modern way of generating random numbers in C++ is to use the components found in &lt;random&gt;. Here is the simplest way to generate a random integer:
+</p>
+
+<code>
+#include &lt;iostream&gt;
+#include &lt;random&gt;
+using namespace std;
+
+int main()
+{
+	cout &lt;&lt; random_device{}() &lt;&lt; endl;
+	return 0;
+}
+</code>
+
+<p>
+The data type <tt>random_device</tt> represents a non-deterministic random integer generator. The expression <tt>random_device{}</tt> creates a value of that data type, then the function call operator (denoted by the empty parenthesis) generates a random integer from this value.
+</p>
+
+<p>
+The code in main has the same effect as the following:
+</p>
+
+<code>
+random_device rd;
+cout &lt;&lt; rd() &lt;&lt; endl;
+</code>
+
+<p>
+For the purposes of this example, storing an instance of <tt>random_device</tt> in a variable is not needed since we are only using it once.
+</p>
+
+<p>
+The <tt>random_device</tt> data type is not usually used by itself, but used in conjuction with pseudo-random number generators and random number distributions.
+</p>
+
+<p>
+Here is a program that displays a random integer in the range of 1 to 20:
+</p>
+
+<code>
+#include &lt;iostream&gt;
+#include &lt;random&gt;
+using namespace std;
+
+int main()
+{
+	default_random_engine prng(random_device{}());
+	uniform_int_distribution&lt;int&gt; idist(1, 20);
+
+	cout &lt;&lt; idist(prng) &lt;&lt; endl;
+	return 0;
+}
+</code>
+
+<p>
+<tt>default_random_engine</tt> represents a pseudo-random number generator (PRNG). A PRNG generates numbers that seem random but are actually deterministic. Every PRNG must be initialized with a "seed" which is just an integer value. From the initial seed, a PRNG will recursively transform this value to give you the next number from the deterministic number sequence. 
+</p>
+
+<p>
+The reason we use a PRNG instead of <tt>random_device</tt> is because PRNGs have faster performance. For many operating systems, <tt>random_device</tt> is associated with a special file named <tt>/dev/random</tt> which is where data from environmental noise is accumulated into. Not only is reading from a file slower than performing a simple calculation, but <tt>/dev/random</tt> can be exausted when too much data is extracted from it, in which case reading from it will block until more data becomes available.
+</p>
+
+<p>
+Therefore, the statement <tt>default_random_engine prng(random_device{}());</tt> creates a PRNG variable initialized with a single seed value taken from an instance of <tt>random_device</tt>. Other than the way you initialize it, <tt>default_random_engine</tt> can be used the same way you would use a <tt>random_device</tt>: the function call operator generates the next random integer.
+</p>
+
+<p>
+The RNGs and PRNGs in C++ only generate random integers from 0 to approximately 4.2 billion. To generate random numbers in a specific range we use a PRNG or RNG together with a random number distribution.
+</p>
+
+<p>
+<tt>uniform_int_distribution</tt> distributes an integer generator's output over a uniform, closed interval. Such a data type is initialized with the minimum and maximum values of the interval and the function call operator will generate a value within this interval from a given integer generator.
+</p>
+
+<p>
+Creating a <tt>default_random_engine</tt> should only happen once in your program, then you may use it multiple times for different random number distributions. Here is a program that generates 5 random integers from -100 to 100 and 5 random real numbers from -20.0 to 0.5:
+</p>
+
+<code>
+#include &lt;iostream&gt;
+#include &lt;random&gt;
+using namespace std;
+
+int main()
+{
+	default_random_engine prng(random_device{}());
+	uniform_int_distribution&lt;int&gt; idist(-100, 100);
+	uniform_real_distribution&lt;double&gt; ddist(-20.0, 0.5);
+
+	for (int i = 0; i &lt; 5; ++i)
+		cout &lt;&lt; idist(prng) &lt;&lt; ' ';
+	cout &lt;&lt; endl;
+	for (int i = 0; i &lt; 5; ++i)
+		cout &lt;&lt; ddist(prng) &lt;&lt; ' ';
+	cout &lt;&lt; endl;
+	return 0;
+}
+</code>
+
+<p>
+<tt>uniform_int_distribution</tt> and <tt>uniform_real_distribution</tt> distributes random data into an integer range or a floating-point range respectively. The reason we must specify <tt>int</tt> or <tt>double</tt> to qualify these data types is because C++ supports different variations of integers and floating-point data types which you may look into on your own if you're interested.
+</p>
+
+<p>
+<tt>random_device</tt>, <tt>default_random_engine</tt>, <tt>uniform_int_distribution</tt>, and <tt>uniform_real_distribution</tt> should be everything you need to start generating random numbers. If you look into what else &lt;random&gt; has to offer you will see that it has other types of PRNGs other than <tt>default_random_engine</tt> and other types of random number distributions that are more mathematically biased than the uniform distributions.
+</body>
+
+</html>
