@@ -1,0 +1,103 @@
+<html>
+
+<head>
+	<title>Lab 6</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<h1>Lab 6</h1>
+
+<p>
+Store all of your files for this lab in a folder named "lab6".
+</p>
+
+<p>
+In this lab you will create and improve on one class named Board. Board will represent an NxN grid of characters where N is specified upon an initialization of this class.
+</p>
+
+<p>
+All exercises shall be done inside board.cpp
+</p>
+
+<h3>Exercise 1</h3>
+
+<p>
+Start by creating the Board class inside board.cpp. Start with this code and replace the comments with your own code to implement the member functions:
+</p>
+
+<code>
+class Board {
+private:
+	vector&lt; vector&lt;char&gt; &gt; data;
+public:
+	explicit Board(int n)
+	{
+		/* Resize this-&gt;data to have size NxN and set all character elements to '.' */
+	}
+
+	char&amp; operator()(int row, int col)
+	{
+		/* Return reference to character at (row,col) */
+	}
+
+	const char&amp; operator()(int row, int col) const
+	{
+		/* Read-only version of operator(). Does same as above */	
+	}
+};
+</code>
+
+<h3>Exercise 2</h3>
+
+Add this additional member function:
+
+<code>
+void clear();
+</code>
+
+<p>
+and implement it so that it sets all characters in <tt>this-&gt;data</tt> to <tt>'.'</tt>
+</p>
+
+<h3>Exercise 3</h3>
+
+Implement two additional member functions:
+
+<code>
+bool operator==(const Board&amp; other) const;
+bool operator!=(const Board&amp; other) const;
+</code>
+
+<p>
+which shall be used for comparing the contents of two boards. operator== returns true if the other board is equal to the current board instance, false otherwise. operator!= returns true if the other board is NOT equal to the current board instance, true otherwise.
+</p>
+
+<h3>Exercise 4</h3>
+
+<p>
+Overload the insertion operator so that you any Board instance can be displayed on an output stream.
+</p>
+
+Add this line right after <tt>class Board {</tt>:
+
+<code>
+friend ostream&amp; operator&lt;&lt;(ostream&amp; os, const Board&amp; board);
+</code>
+
+<p>
+then place the following function outside the class and complete it:
+</p>
+
+<code>
+ostream&amp; operator&lt;&lt;(ostream&amp; os, const Board&amp; board)
+{	
+	/* Use the insertion operator on os to write a string representation of board */
+	return os;
+}
+</code>
+</body>
+
+</html>
