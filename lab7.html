@@ -1,0 +1,86 @@
+<html>
+
+<head>
+	<title>Lab 7</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<h1>Lab 7</h1>
+
+<p>
+Store all of your files for this lab in a folder named "lab7".
+</p>
+
+<p>
+In this lab we will make a simplified version of the minesweeper game.
+</p>
+
+<h3>Exercise 1</h3>
+
+<p>
+Copy the code you have for the Board class and place it into a file named ms.cpp.
+</p>
+
+<p>
+Modify <tt>ostream&amp; operator&lt;&lt;(ostream&amp; os, const Board&amp; board)</tt> so that rows and columns are labeled like this:
+</p>
+
+<code>
+     0  1  2  3  4
+  0  .  .  .  .  .
+  1  .  .  .  .  .
+  2  .  .  .  .  .
+  3  .  .  .  .  .
+  4  .  .  .  .  .
+</code>
+
+<p>
+You can use manually insert spaces to os, or you can use the setw function found in &lt;iomanip&gt;. 
+</p>
+
+<h3>Exercise 2</h3>
+
+<p>
+Create a class named Minesweeper with Board as a public base class. This class will represent a 5x5 grid and it will contain 4 random coordinates of where mines are hidden in the grid. 
+</p>
+
+<h3>Exercise 3</h3>
+
+<p>
+Implement <tt>void reveal(int row, int col)</tt> as a public member function of Minesweeper. This function will set the character at (row, col) to 'M' if there is a mine at that location, or 'C' there is no mine (C stands for clear).
+</p>
+
+<h3>After completing all three exercises:</h3>
+
+Test your class using this main function:
+
+<code>
+int main()
+{
+	Minesweeper ms;
+	int row, col;
+	int guesses = 0;
+
+	while (guesses &lt; 21) {
+		cout &lt;&lt; ms &lt;&lt; endl;
+		cout &lt;&lt; "Enter row and column: ";
+		cin &gt;&gt; row &gt;&gt; col;
+		ms.reveal(row, col);
+		if (ms(row, col) == 'M') break;
+		++guesses;
+	}
+	cout &lt;&lt; ms &lt;&lt; endl;
+	return 0;
+}
+</code>
+
+<p>
+The game is played by having the player select coordinates. Once 21 coordinates have been selected without encountering a mine, that means the last 4 coordinates are where the mines are at and the player has won. 
+</p>
+
+</body>
+
+</html>
