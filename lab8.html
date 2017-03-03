@@ -1,0 +1,168 @@
+<html>
+
+<head>
+	<title>Lab 8</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<h1>Lab 8</h1>
+
+<p>
+Store all of your files for this lab in a folder named "lab8".
+</p>
+
+<p>
+The provided code is a partially complete implementation of a 8 puzzle game. The game is played by swapping the blank tile with any non-diagonal adjacent tile until all the tiles are in the following order:
+
+<code>
+1 2 3
+4 5 6
+7 8  
+</code>
+
+<p>
+Everything should go into ep.cpp and the compiled program should be named ep. To complete the program, you must implement the <u>move</u> and <u>completed</u> member functions of the EightPuzzle class. You need not modify anything else. Descriptions of these member functions are provided in the comments:
+</p>
+
+<code>
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;random&gt;
+using namespace std;
+
+class Board {
+private:
+	vector&lt; vector&lt;char&gt; &gt; data;
+public:
+	Board(int n)
+	{
+		this-&gt;resize(n);
+	}
+	void resize(int n)
+	{
+		this-&gt;data.resize(n);
+		for (auto&amp; row : this-&gt;data) {
+			row.resize(n, '.');
+		}
+	}
+	void clear()
+	{
+		for (auto&amp; row : this-&gt;data) {
+			for (auto&amp; col : row) {
+				col = '.';
+			}
+		}
+	}
+	char&amp; operator()(int r, int c)
+	{
+		return this-&gt;data[r][c];
+	}
+	const char&amp; operator()(int r, int c) const
+	{
+		return this-&gt;data[r][c];
+	}
+	int size() const
+	{
+		return this-&gt;data.size();
+	}
+};
+
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Board&amp; board)
+{
+	int s = board.size();
+	for (int r = 0; r &lt; s; ++r) {
+		for (int c = 0; c &lt; s; ++c) {
+			os &lt;&lt; board(r, c) &lt;&lt; ' ';
+		}
+		os &lt;&lt; std::endl;
+	}
+	return os;
+}
+
+class EightPuzzle : public Board {
+public:
+	EightPuzzle() : Board(3)
+	{
+		this-&gt;reset();
+	}
+	void reset()
+	{
+		char t = '1';
+		for (int r = 0; r &lt; 3; ++r) {
+			for (int c = 0; c &lt; 3; ++c) {
+				(*this)(r, c) = t++;
+			}
+		}
+		(*this)(2, 2) = ' ';
+	}
+	void shuffle()
+	{
+		std::default_random_engine prng(std::random_device{}());
+		std::array&lt;char, 9&gt; a;
+		char t = '1';
+		std::generate_n(a.begin(), 8, [&amp;](){ return t++; });
+		a[8] = ' ';
+		std::shuffle(a.begin(), a.end(), prng);
+		auto it = a.begin();
+		for (int r = 0; r &lt; 3; ++r) {
+			for (int c = 0; c &lt; 3; ++c) {
+				(*this)(r, c) = *it++;
+			}
+		}
+	}
+	bool move(char dir)
+	{
+		/* Swaps the blank tile with an adjacent 
+		 * tile specified by dir. dir can be 'w',
+		 * 'a', 's', or 'd' to indicate the top, 
+		 * left, bottom, or right-adjacent tile 
+		 * respectively.
+		 *
+		 * Returns true if the swap was successful
+		 * or false if the blank tile cannot be 
+		 * moved in the specified direction.
+		 */
+	}
+	bool completed() const
+	{
+		/* Returns true if the 8 puzzle 
+		 * is completed. The 8 puzzle is 
+		 * completed when it looks like 
+		 * this:
+		 *
+		 * +---+---+---+
+		 * | 1 | 2 | 3 |
+		 * +---+---+---+
+		 * | 4 | 5 | 6 |
+		 * +---+---+---+
+		 * | 7 | 8 |   |
+		 * +---+---+---+
+		 */
+	}
+};
+
+int main()
+{
+	EightPuzzle ep;
+	char dir;
+
+	ep.shuffle();
+	do {
+		cout &lt;&lt; ep &lt;&lt; endl;
+		if (not (cin &gt;&gt; dir)) break;
+		if (not ep.move(dir)) {
+			cout &lt;&lt; "Invalid move." &lt;&lt; endl;
+		}
+	} while (not ep.completed());
+	return 0;
+}
+</code>
+
+</body>
+
+</html>
