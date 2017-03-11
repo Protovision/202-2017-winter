@@ -17,6 +17,11 @@ tt {
 	white-space: pre;
 	margin: 1em 0;
 }
+urgent {
+	font-size: large;
+	font-weight: bold;
+	color: red;
+}
 * {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
 }
