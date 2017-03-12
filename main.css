@@ -22,6 +22,9 @@ urgent {
 	font-weight: bold;
 	color: red;
 }
+nvm {
+	text-decoration: line-through;
+}
 * {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif
 }
