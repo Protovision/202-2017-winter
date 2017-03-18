@@ -1,0 +1,76 @@
+<html>
+
+<head>
+	<title>Final Project</title>
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+
+<h1>Final Project</h1>
+
+<p>
+Your final project is to implement a single-player board game known as Peg solitaire (English version). Each turn, one peg jumps over another peg into a hole and the peg that was jumped gets removed. Jumps can only be horizontal or vertical. The goal of the game is to reach 1 peg left. The game ends when there are no more possible moves. 
+</p>
+
+<p>
+To get an intuitive understanding of how this game works, you can play it online for free here: <a href="http://www.web-games-online.com/peg-solitaire/">http://www.web-games-online.com/peg-solitaire/</a>
+</p>
+
+<h3>Source file requirements</h3>
+
+<p>
+Store all source file(s) inside a folder called "final" in your cse202 workspace. If you choose to have multiple source files, name the source file containing your main function as "main.cpp".
+</p>
+
+<h3>Program requirements</h3>
+
+<p>
+The compiled program should be named "psol" (stands for peg solitaire)
+</p>
+
+<p>
+The initial state of your Peg solitaire game should be displayed like this:
+</p>
+
+<code>
+  0 1 2 3 4 5 6 
+0     . . .
+1     . . .
+2 . . . . . . .
+3 . . . o . . .
+4 . . . . . . .
+5     . . .
+6     . . .
+</code>
+
+<p>
+The dots represent the pegs and the o represents the initial hole. 
+</p>
+
+<p>
+Before each turn, the current state of the board should be displayed.
+</p>
+
+<p>
+During each turn, the user will input 2 coordinates. The first coordinate refers to the peg to select and the second coordinate refers to the hole to jump the selected peg to. The program should ignore any invalid moves specified by the user: this includes (but is not limited to) attempting to move pegs outside the cross-shaped section.
+</p>
+
+<p>
+The program should halt when no more moves are available.
+</p>
+
+<p>
+You may optionally use code from your Board class to complete this, the way you code this is up to you; as long as the compiled program works according to the requirements you will receive full credit.
+</p>
+
+<h3>Due date</h3>
+
+<p>
+Your final project should be finished by March 24, 2017, 11:59 PM. 
+</p>
+
+</body>
+
+</html>
